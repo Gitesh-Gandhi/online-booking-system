@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <title>User-Homepage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+
+
+    <style>
+        body {
+            background-color: black;
+            color: white;
+        }
+
+        .header {
+            padding: 2rem;
+            background-color: black;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: bold;
+            display: inline-block;
+            /* border-bottom: 2px solid #fff; */
+            /* padding-bottom: 1.5rem; */
+            width: 100%;
+        }
+
+        .line {
+            border-top: 3px solid white;
+            margin-bottom: 20px;
+        }
+
+        .dashboard {
+            position: absolute;
+            left: 50;
+            top: 56%;
+            transform: translateY(-50%);
+            background-color: whitesmoke;
+            height: 85vh;
+            width: 20%;
+            padding: 20px;
+        }
+
+        .tab {
+            background-color: black;
+            color: white;
+            padding: 25px;
+            text-align: center;
+            margin-top: 20%;
+            margin-bottom: 20%;
+            cursor: pointer;
+            font-size: larger;
+            border-radius: 20px;
+        }
+
+        .active {
+            background-color: black;
+        }
+
+        .container {
+            position: relative;
+            margin-top: 60px;
+            margin-right: 10%;
+            padding: 10px;
+            border: 1px solid white;
+            height: 60%;
+            width: 60%;
+        }
+
+        .content {
+            margin-top: 20px;
+            text-align: center;
+            font-size: larger;
+        }
+
+        .content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .content ul ul {
+            margin: 20px 0;
+        }
+
+        .content ul ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .container .content ul li {
+            display: block;
+        }
+
+        .container .content ul li ul {
+            border: 1px solid white;
+            padding: 20px;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        button {
+            background-color: white;
+            border: none;
+            color: black;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin-top: 10px;
+            border-radius: 50px;
+        }
+    </style>
+</head>
+
+<body class="text-center">
+    <div class="header">
+        <h1>ONLINE BOOKING SYSTEM</h1>
+    </div>
+    <div class="line"></div>
+    <div class="dashboard">
+        <div class="tab active">Check for Bookings</div>
+        <div class="tab active">Your Current Bookings</div>
+        <div class="tab active">Your Reservation History</div>
+        <div class="tab active">Feedback</div>
+    </div>
+
+
+    <div class="container">
+        <h1>Heading</h1>
+        <div class="content">
+            <ul>
+                <li>
+                    <ul>
+                        <li>Location: Mumbai</li>
+                        <br>
+                        <li>Start Date: 2022/10/09</li>
+                        <br>
+                        <li>Start Time: 9:00</li>
+                        <br>
+                        <li><button>See Details</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Location: Delhi</li>
+                        <br>
+                        <li>Start Date: 2022/11/15</li>
+                        <br>
+                        <li>Start Time: 10:30</li>
+                        <br>
+                        <li><button>Click me</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Location: Bangalore</li>
+                        <br>
+                        <li>Start Date: 2022/12/20</li>
+                        <br>
+                        <li>Start Time: 11:15</li>
+                        <br>
+                        <li><button>Click me</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Location: Mumbai</li>
+                        <br>
+                        <li>Start Date: 2022/10/09</li>
+                        <br>
+                        <li>Start Time: 9:00</li>
+                        <br>
+                        <li><button>Click me</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Location: Delhi</li>
+                        <br>
+                        <li>Start Date: 2022/11/15</li>
+                        <br>
+                        <li>Start Time: 10:30</li>
+                        <br>
+                        <li><button>Click me</button></li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Location: Bangalore</li>
+                        <br>
+                        <li>Start Date: 2022/12/20</li>
+                        <br>
+                        <li>Start Time: 11:15</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Location: Mumbai</li>
+                        <br>
+                        <li>Start Date: 2022/10/09</li>
+                        <br>
+                        <li>Start Time: 9:00</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Location: Delhi</li>
+                        <br>
+                        <li>Start Date: 2022/11/15</li>
+                        <br>
+                        <li>Start Time: 10:30</li>
+                    </ul>
+                </li>
+                <li>
+                    <ul>
+                        <li>Location: Bangalore</li>
+                        <br>
+                        <li>Start Date: 2022/12/20</li>
+                        <br>
+                        <li>Start Time: 11:15</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

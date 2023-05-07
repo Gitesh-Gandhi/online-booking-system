@@ -1,0 +1,31 @@
+### Create New Account
+
+POST http://localhost:8080/login/create HTTP/1.1 
+content-type: application/json
+
+{
+    "userName" : "pqr", 
+    "email" : "abdce@gmail.com", 
+    "password" : "abcd", 
+    "currentLocation" : "mumbai",
+    "role" : "user"
+}
+
+### login
+POST http://localhost:8080/login/loginv2 HTTP/1.1 
+content-type: application/json
+
+{
+   
+    "email": "rueben10@gmail.com", 
+    "password" : "123456" 
+   
+}
+
+### forgot password
+POST http://localhost:8080/login/forgotpassword HTTP/1.1 
+content-type: application/json
+
+{
+   "email": "tom@gmail.com"
+}

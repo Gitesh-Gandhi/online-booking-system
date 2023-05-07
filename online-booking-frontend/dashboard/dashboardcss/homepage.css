@@ -1,0 +1,146 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+.header {
+    padding: 2rem;
+    background-color: black;
+    color: white;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: bold;
+    display: inline-block;
+    /* border-bottom: 2px solid #fff; */
+    /* padding-bottom: 1.5rem; */
+    width: 100%;
+}
+
+.line {
+    border-top: 3px solid white;
+    margin-bottom: 10px;
+}
+
+.dashboard {
+    position:absolute;
+    left: 50%;
+    top: 62%;
+    transform: translate(-50%, -50%);
+    background-color: whitesmoke;
+    height: 73vh;
+    width: 50%;
+    padding: 60px;
+    border-radius: 20%;
+   
+}
+
+
+.tab {
+    background-color:black;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 0%;
+    margin-bottom: 6%;
+    cursor: pointer;
+    font-size: 25px;
+    border-radius: 20px;
+}
+    
+.form-signup {
+    width: 100%;
+    max-width: 330px;
+    padding: 10px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.form-signup .form-floating:focus-within {
+    z-index: 2;
+}
+
+.form-signup input[type="text"],
+.form-signup input[type="date"],
+.form-signup input[type="time"],
+.form-signup input[type="number"],
+.form-signup select {
+    margin-bottom: 20px;
+}
+
+.btn-create-account {
+    background-color: #fff;
+    color: #000;
+    font-size: 1rem;
+    padding: 0.6rem 0.7rem;
+    border-radius: 1rem;
+}
+
+.text-lg {
+    font-size: 1.5rem;
+    
+}
+#inputRole {
+    margin-bottom: 20px; /* Adjust the value as per your requirement */
+  }
+
+  
+  
+  .container {
+    width: 95%;
+  }
+  .dashboard1 {
+    position: absolute;
+    left: 15%;
+    top: 52%;
+    transform: translate(-65%, -45%);
+    background-color: whitesmoke;
+    height: 62vh;
+    width: 23%;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    
+}
+
+
+.tab1 {
+    background-color: black;
+    color: white;
+    padding: 25px;
+    text-align: center;
+    margin-top: 15%;
+    margin-bottom: 15%;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 15px;
+    flex: 1;
+    margin: 0 10px;
+    text-align: center;
+}
+.right {
+    float: right;
+    position: relative;
+    top: -40px;
+}
+
+.table-margin {
+    margin-top: 70px;
+}
+.left {
+    float: left;
+    position: relative;
+    top: -40px;
+}
+
+
+
+  
+ 
+
+ 

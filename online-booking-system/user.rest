@@ -1,0 +1,43 @@
+
+### Get user 
+
+GET http://localhost:8080/user/12
+
+
+### Create New user booking 
+
+POST http://localhost:8080/user/1/createbookingslot/27 HTTP/1.1 
+content-type: application/json
+
+
+
+### Get All user bookings
+
+GET http://localhost:8080/user/userbooking/
+
+
+### Get a user bookings
+
+GET http://localhost:8080/user/userbooking/12/26
+
+
+### delete Booking slot
+
+DELETE http://localhost:8080/user/12/booking/28
+
+### Create New user feedback 
+
+POST http://localhost:8080/user/feedback/12 HTTP/1.1 
+content-type: application/json
+
+{
+
+    "comment": "it is working bad",
+    "rating": 10,
+    "userId": 12
+
+}
+
+### Get All feedbacks
+
+GET http://localhost:8080/user/feedback
