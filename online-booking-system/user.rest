@@ -6,19 +6,19 @@ GET http://localhost:8080/user/12
 
 ### Create New user booking 
 
-POST http://localhost:8080/user/1/createbookingslot/27 HTTP/1.1 
+POST http://localhost:8080/user/12/booking/28 HTTP/1.1 
 content-type: application/json
 
 
 
 ### Get All user bookings
 
-GET http://localhost:8080/user/userbooking/
+GET http://localhost:8080/user/userbooking/12
 
 
 ### Get a user bookings
 
-GET http://localhost:8080/user/userbooking/12/26
+GET http://localhost:8080/user/userbooking/12/29
 
 
 ### delete Booking slot
@@ -41,3 +41,6 @@ content-type: application/json
 ### Get All feedbacks
 
 GET http://localhost:8080/user/feedback
+
+### Get Reservation history
+GET http://localhost:8080/user/currentbooking?date=2023-05-08

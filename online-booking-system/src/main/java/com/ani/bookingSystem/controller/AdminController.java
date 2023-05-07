@@ -1,7 +1,9 @@
 package com.ani.bookingSystem.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ani.bookingSystem.domain.BookingSlot;
 import com.ani.bookingSystem.dto.AdminUserBookDto;
 import com.ani.bookingSystem.dto.AppResponse;
 import com.ani.bookingSystem.dto.BookingSlotDto;
@@ -205,8 +208,17 @@ public class AdminController {
         .bd(sts)
         .build();
           return ResponseEntity.ok().body(response);
+    }
 
-
+          @GetMapping(value = "/currentbooking", produces = MediaType.APPLICATION_JSON_VALUE)
+          public ResponseEntity<AppResponse<List<BookingSlot>>> searchUerBookingsByUserName(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+              List<BookingSlot> sts = adminService.currenytBokking(date);
+              AppResponse<List<BookingSlot>> response = AppResponse.<List<BookingSlot>>builder()
+              .sts("success")
+              .msg("All User Bookings")
+              .bd(sts)
+              .build();
+                return ResponseEntity.ok().body(response);
 
 }
 }

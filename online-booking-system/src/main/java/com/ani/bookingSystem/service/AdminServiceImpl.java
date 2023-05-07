@@ -1,5 +1,6 @@
 package com.ani.bookingSystem.service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -193,4 +194,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
 
+    public List<BookingSlot> currenytBokking(LocalDate date){
+return adminRepository.findByEndDateGreaterThan(date);
+    }
 }

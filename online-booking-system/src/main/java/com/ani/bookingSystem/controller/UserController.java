@@ -63,10 +63,11 @@ public class UserController {
 
     // }
 
-    @PostMapping(value = "/{userId}/event/{bookingId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/{userId}/booking/{bookingId}", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<Integer>> newEvent(@Valid @PathVariable Long userId, @PathVariable Long bookingId) {
         Integer sts = userService.createNewUserBooking(userId, bookingId);
         AppResponse<Integer> response = AppResponse.<Integer>builder()
+                .sts("success")
                 .msg("new event booked successfully.")
                 .bd(sts)
                 .build();

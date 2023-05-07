@@ -67,6 +67,11 @@ function apiFetchBooking(table, loc) {
         .catch(err => console.log(err))
 }
 
+function logout() {
+    localStorage.setItem("userId", null)
+    window.location.href = "../../login/loginhtml/login-page.html"
+}
+
 
 
 

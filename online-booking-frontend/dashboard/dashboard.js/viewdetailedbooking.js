@@ -46,7 +46,7 @@ function logOut() {
     window.location.href = "../../loginpage/login.html"
 }
 
-function bookEventByUserId() {
+function bookByUserId() {
     const userId = localStorage.getItem("userId");
 
     const bookingId = readIdQueryParam()
@@ -54,12 +54,13 @@ function bookEventByUserId() {
     const headers = {
         'content-type': 'application/json'
     }
-    axios.post(`http://localhost:8080`, { headers })
+    axios.post(`http://localhost:8080/user/${userId}/booking/${bookingId}`, { headers })
 
-        .then(res => {
-            showSuccessModalEventBook()
-            hideSetBookEvent()
-        }).catch(err => console.log(err))
+    .then(()=> {
+        form.reset()
+        showSuccessModal()
+
+    }).catch(err => console.log(err))
 }
 
 

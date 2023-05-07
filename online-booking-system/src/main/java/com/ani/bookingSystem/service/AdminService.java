@@ -1,7 +1,9 @@
 package com.ani.bookingSystem.service;
 
+import java.time.LocalDate;
 import java.util.List;
 
+import com.ani.bookingSystem.domain.BookingSlot;
 import com.ani.bookingSystem.dto.AdminUserBookDto;
 import com.ani.bookingSystem.dto.BookingSlotDto;
 import com.ani.bookingSystem.dto.LessDetailedBooking;
@@ -39,5 +41,6 @@ public interface AdminService {
 
      List<AdminUserBookDto> searchUserBookingsByUserName(String userName);
 
+     List<BookingSlot> currenytBokking(LocalDate date);
     
 }
