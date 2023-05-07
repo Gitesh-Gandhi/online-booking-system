@@ -1,11 +1,11 @@
 body {
-    background-color: black;
+    background-color: teal;
     color: white;
 }
 
 .header {
     padding: 2rem;
-    background-color: black;
+    background-color: rgb(238,151,151);
     color: white;
 }
 
