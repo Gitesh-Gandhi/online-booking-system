@@ -8,10 +8,10 @@ GET http://localhost:8080/admin/filterbyusername?userName=rueben
 
 ### fetch user
 
-GET http://localhost:8080/admin/user/9
+GET http://localhost:8080/admin/user/51
 
 ### Delete User By Id 
-DELETE http://localhost:8080/admin/user/
+DELETE http://localhost:8080/admin/user/52
 
 ### update User 
 PUT http://localhost:8080/admin/user/update HTTP/1.1 
@@ -90,5 +90,5 @@ GET http://localhost:8080/admin/alluserbookings
 
 ### Get all userBooking for specific user by username
 
-GET http://localhost:8080/admin/filterbyname?userName=rueben
+GET http://localhost:8080/admin/filterbyname?username=rahul
 

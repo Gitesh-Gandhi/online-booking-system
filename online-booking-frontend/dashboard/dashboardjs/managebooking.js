@@ -1,26 +1,34 @@
+
+
+
 function setupTable() {
-    const table = document.getElementById('table')
-    // const btnSearch = document.getElementById('btnSearch')
+    const table = document.getElementById('bookingTable')
+
+    const btnSearch = document.getElementById('btnSearch')
     
-    // btnSearch.onclick = () =>   {
+    btnSearch.onclick = () =>   {
 
-    //     apiFetchBooking(table, document.getElementById('txtLocation').value )
-    // }
-
-
+       const api= apiFetchBooking(table, document.getElementById('txtLocation').value )
+       console.log(api)
+    }
 
     apiFetchAllbookings(table)
 }
+
 
 setupTable()
 
 
 function propulateActualData(table, bookings) {
+    while (table.rows.length > 1) {
+        table.deleteRow(1)
+    }
 
     for(const booking of bookings) {
 
         const {id ,location, startDate, endDate, startingTime, endingTime, price } = booking
-        const viewPageUrl = `./userviewbookingdetails.html?id=${id}`
+        const updatePageUrl = `./updatebooking.html?id=${id}`
+        const viewPageUrl = `./adminviewbookingdetails.html?id=${id}`
 
         const row = table.insertRow()
         row.insertCell(0).innerHTML = id
@@ -31,12 +39,26 @@ function propulateActualData(table, bookings) {
         row.insertCell(5).innerHTML = endingTime
         row.insertCell(6).innerHTML = price
         row.insertCell(7).innerHTML = `
-            <a class='ms-2' href='${viewPageUrl}'>view details</a>  
+            <a class='ms-2' href='${updatePageUrl}'>Update</a>
+            <a class='ms-2' onclick='showConfirmDeleteModal(${id})'>Delete</a>  
+            <a class='ms-2' href='${viewPageUrl}'>view details</a> 
+            
             
         `
     }
 }
 
+function showConfirmDeleteModal(id) {
+    console.log('clicked ' + id)
+    const myModalEl = document.getElementById('deleteModal');
+    const modal = new bootstrap.Modal(myModalEl)
+    modal.show()
+
+    const btDl = document.getElementById('btDl')
+    btDl.onclick = () => {
+        apiCallDeleteBooking(id, modal)
+    }
+}
 
 function apiFetchAllbookings(table) {
     axios.get('http://localhost:8080/admin/bookingslot')
@@ -51,6 +73,8 @@ function apiFetchAllbookings(table) {
 }
 
 function apiFetchBooking(table, loc) {
+    console.log(table)
+    console.log(loc)
     const url = `http://localhost:8080/admin/filterLocation`
     axios.get(url,{
         params: {
@@ -67,11 +91,16 @@ function apiFetchBooking(table, loc) {
         .catch(err => console.log(err))
 }
 
-function logout() {
-    localStorage.setItem("userId", null)
-    window.location.href = "../../login/loginhtml/login-page.html"
+
+function apiCallDeleteBooking(id, modal) {
+    const url = `http://localhost:8080/admin/bookingslot/${id}`
+
+    axios.delete(url)
+    .then(res =>
+        window.location.reload())
+    .then(({ sts, msg, bd }) => modal.hide())
+    .catch(console.log)
 }
-
-
-
-
+function goBack() {
+    window.history.back();
+}

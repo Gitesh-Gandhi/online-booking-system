@@ -22,6 +22,7 @@
     <div class="header">
         <h1>ONLINE BOOKING SYSTEM</h1>
         <a href="../dashboardhtml/admin-homepage.html" class="btn btn-dark ms-auto right" >Home</a>
+        <a  class="btn btn-dark  ms-auto left" onclick="goBack()">Go back</a>
     </div>
     <div class="line"></div>
     <form class="form-signup" id="createBooking">
@@ -78,13 +79,13 @@
                             <p class="text-black text-lg">Booking Slot Created Successfully!!!</p>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="reloadPage()">Close</button>
                         </div>
                     </div>
                 </div>
             </div>
     </form>
-    <script src="../dashboard.js/createbooking.js"></script>
+    <script src="../dashboardjs/createbooking.js"></script>
 
 </body>
 

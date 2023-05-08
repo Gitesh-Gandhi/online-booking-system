@@ -1,6 +1,3 @@
-
-
-
 function setupTable() {
     const table = document.getElementById('bookingTable')
 
@@ -12,7 +9,7 @@ function setupTable() {
     }
 
     apiFetchAllbookings(table)
-}
+ }
 
 setupTable()
 
@@ -23,10 +20,10 @@ function propulateActualData(table, bookings) {
     }
 
     for(const booking of bookings) {
-
+        
         const {id ,location, startDate, endDate, startingTime, endingTime, price } = booking
-        const updatePageUrl = `./updatebooking.html?id=${id}`
-        const viewPageUrl = `./adminviewbookingdetails.html?id=${id}`
+        const viewPageUrl = `./currentbookingdetails.html?id=${id}`
+       
 
         const row = table.insertRow()
         row.insertCell(0).innerHTML = id
@@ -37,9 +34,10 @@ function propulateActualData(table, bookings) {
         row.insertCell(5).innerHTML = endingTime
         row.insertCell(6).innerHTML = price
         row.insertCell(7).innerHTML = `
-            <a class='ms-2' href='${updatePageUrl}'>Update</a>
-            <a class='ms-2' onclick='showConfirmDeleteModal(${id})'>Delete</a>  
-            <a class='ms-2' href='${viewPageUrl}'>view details</a> 
+            
+            
+            <a class='ms-2' href='${viewPageUrl}'>view details</a>  
+            
             
             
         `
@@ -59,12 +57,15 @@ function showConfirmDeleteModal(id) {
 }
 
 function apiFetchAllbookings(table) {
-    axios.get('http://localhost:8080/admin/bookingslot')
+    const userId = localStorage.getItem("userId");
+    console.log(userId)
+    const url = `http://localhost:8080/user/getbookinghistory/${userId}`
+    axios.get(url)
         .then(res => {
             const { data } = res
             console.log(data)  
             const { sts, msg, bd } = data
-
+            console.log(bd)
             propulateActualData(table, bd)
         })
         .catch(err => console.log(err))
@@ -87,14 +88,17 @@ function apiFetchBooking(table, loc) {
         .catch(err => console.log(err))
 }
 
-
-function apiCallDeleteBooking(id, modal) {
-    const url = `http://localhost:8080/admin/bookingslot/${id}`
+function apiCallDeleteBooking(bookingId, modal) {
+    const userId = localStorage.getItem("userId");
+    console.log(userId,bookingId)
+    const url = `http://localhost:8080/user/${userId}/booking/${bookingId}`
 
     axios.delete(url)
-        .then(res => res.data) // you converted complete response in to our business reponse
-        // .then( data => console.log(data.msg) ) // this line can be written in destructured form as below
-        .then( ({ sts, msg, bd }) =>  modal.hide() )
-        
-        .catch(console.log)
+    .then(res =>
+        window.location.reload())
+    .then(({ sts, msg, bd }) => modal.hide())
+    .catch(console.log)
+}
+function goBack() {
+    window.history.back();
 }

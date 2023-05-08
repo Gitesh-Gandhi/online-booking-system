@@ -3,7 +3,6 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,11 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-
-import ch.qos.logback.core.subst.Token.Type;
-
 import javax.persistence.JoinColumn;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

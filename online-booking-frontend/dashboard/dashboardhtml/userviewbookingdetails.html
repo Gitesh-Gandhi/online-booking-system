@@ -23,6 +23,7 @@
     <div class="header">
         <h1 class="text-center">ONLINE BOOKING SYSTEM</h1>
         <a href="../dashboardhtml/user-homepage.html" class="btn btn-dark  ms-auto right">Home</a>
+        <a  class="btn btn-dark  ms-auto left" onclick="goBack()">Go back</a>
     </div>
     <div class="line"></div>
     <div class="text-center">
@@ -48,7 +49,7 @@
               </div>
             </div>
             <div style="text-align: center;">
-                <button type="submit" class="btn btn-dark" style="width: 100px; height: 40px;">Book</button>
+                <button type="submit" class="btn btn-dark" style="width: 100px; height: 40px;"onclick="bookByUserId()">Book</button>
                 <button type="submit" class="btn btn-dark" style="width: 100px; height: 40px; "><a style="color: white;"
                         href="../dashboardhtml/user-homepage.html">cancel</a></button>
             </div>
@@ -70,7 +71,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p class="text-black text-lg">Booked Successfully!!!</p>
+                <p class="text-black text-lg text-center">Booked Successfully!!!</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -82,7 +83,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../dashboard.js/viewdetailedbooking.js"></script>
+    <script src="../dashboardjs/viewdetailedbooking.js"></script>
 </body>
 
 </html>

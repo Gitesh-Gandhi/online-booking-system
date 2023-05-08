@@ -28,5 +28,5 @@ public class FeedbackDto {
     @NotBlank(message = "Rating cant be blank")
     private Double rating;
 
-    private Long userId;
+    
 }

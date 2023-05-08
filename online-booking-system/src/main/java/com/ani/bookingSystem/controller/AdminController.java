@@ -200,25 +200,17 @@ public class AdminController {
     //when admin searches username and clicks search
 
     @GetMapping(value = "/filterbyname", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<AdminUserBookDto>>> searchUserBookingsByUserName(@RequestParam String userName) {
-        List<AdminUserBookDto> sts = adminService.searchUserBookingsByUserName(userName);
+    public ResponseEntity<AppResponse<List<AdminUserBookDto>>> searchUserBookingsByUserName(@RequestParam String username) {
+        List<AdminUserBookDto> sts = adminService.searchUserBookingsByUserName(username);
         AppResponse<List<AdminUserBookDto>> response = AppResponse.<List<AdminUserBookDto>>builder()
         .sts("success")
         .msg("All User Bookings")
         .bd(sts)
         .build();
           return ResponseEntity.ok().body(response);
+
+         
     }
 
-          @GetMapping(value = "/currentbooking", produces = MediaType.APPLICATION_JSON_VALUE)
-          public ResponseEntity<AppResponse<List<BookingSlot>>> searchUerBookingsByUserName(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
-              List<BookingSlot> sts = adminService.currenytBokking(date);
-              AppResponse<List<BookingSlot>> response = AppResponse.<List<BookingSlot>>builder()
-              .sts("success")
-              .msg("All User Bookings")
-              .bd(sts)
-              .build();
-                return ResponseEntity.ok().body(response);
-
-}
+         
 }

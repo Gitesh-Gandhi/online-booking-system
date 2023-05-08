@@ -75,5 +75,8 @@ function apiFetchBooking(table, userName) {
         })
         .catch(err => console.log(err))
 }
+function goBack() {
+    window.history.back();
+}
 
 

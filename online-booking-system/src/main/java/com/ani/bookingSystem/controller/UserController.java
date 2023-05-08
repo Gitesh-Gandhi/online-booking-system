@@ -21,6 +21,7 @@ import com.ani.bookingSystem.dto.AppResponse;
 import com.ani.bookingSystem.dto.BookingSlotDto;
 import com.ani.bookingSystem.dto.FeedbackDto;
 import com.ani.bookingSystem.dto.NewUserBookingDto;
+import com.ani.bookingSystem.dto.UserBookingDto;
 import com.ani.bookingSystem.dto.UserCreateDto;
 import com.ani.bookingSystem.dto.UsersDto;
 import com.ani.bookingSystem.service.UserService;
@@ -76,17 +77,54 @@ public class UserController {
 
     //will be used in current bookings
 
-    @CrossOrigin
-    @GetMapping(value = "/userbooking/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<List<BookingSlotDto>>> findUserByid(@PathVariable Long id) {
-        List<BookingSlotDto> sts = userService.findUserBookings(id);
-        AppResponse<List<BookingSlotDto>> response = AppResponse.<List<BookingSlotDto>>builder()
-                .sts("success")
-                .msg("All userbookings")
-                .bd(sts)
-                .build();
-        return ResponseEntity.ok().body(response);
+    // @CrossOrigin
+    // @GetMapping(value = "/userbooking/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    // public ResponseEntity<AppResponse<List<BookingSlotDto>>> findUserByid(@PathVariable Long id) {
+    //     List<BookingSlotDto> sts = userService.findUserBookings(id);
+    //     AppResponse<List<BookingSlotDto>> response = AppResponse.<List<BookingSlotDto>>builder()
+    //             .sts("success")
+    //             .msg("All userbookings")
+    //             .bd(sts)
+    //             .build();
+    //     return ResponseEntity.ok().body(response);
+    // }
+
+    @GetMapping(value = "/getuserbookings/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<UserBookingDto>>> findAll(@PathVariable Long userId) {
+        List<UserBookingDto> sts=userService.getAllBookings(userId);
+        AppResponse<List<UserBookingDto>> response=AppResponse.<List<UserBookingDto>>builder()
+                    .sts("success")
+                    .msg("All  bookings")
+                    .bd(sts)
+                    .build();
+              return ResponseEntity.ok().body(response);
     }
+
+   
+    @GetMapping(value = "/getcurrentbookings/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<UserBookingDto>>> findAllCurrent(@PathVariable Long userId) {
+        List<UserBookingDto> sts=userService.getCurrentBookings(userId);
+        AppResponse<List<UserBookingDto>> response=AppResponse.<List<UserBookingDto>>builder()
+                    .sts("success")
+                    .msg("All current bookings")
+                    .bd(sts)
+                    .build();
+              return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping(value = "/getbookinghistory/{userId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<UserBookingDto>>> findAllHistory(@PathVariable Long userId) {
+        List<UserBookingDto> sts=userService.getBookingHistory(userId);
+        AppResponse<List<UserBookingDto>> response=AppResponse.<List<UserBookingDto>>builder()
+                    .sts("success")
+                    .msg("All bookings history")
+                    .bd(sts)
+                    .build();
+              return ResponseEntity.ok().body(response);
+    }
+
+
+    
     //will be used in view details
 
     @GetMapping(value = "/userbooking/{userId}/{bookingId}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -115,18 +153,30 @@ public class UserController {
     }
     //will be used when user clicks submit feedback
 
-    @CrossOrigin
-    @PostMapping(value = "/feedback/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> createUserFeedback(@RequestBody FeedbackDto dto) {
-        final Integer sts = userService.createFeedback(dto);
-        final AppResponse<Integer> response = AppResponse.<Integer>builder()
-                .sts("success")
-                .msg("Feedback submitted Successfully")
+    // @CrossOrigin
+    // @PostMapping(value = "/feedback/{userId}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    // public ResponseEntity<AppResponse<Integer>> createUserFeedback(@RequestBody FeedbackDto dto) {
+    //     final Integer sts = userService.createFeedback(dto);
+    //     final AppResponse<Integer> response = AppResponse.<Integer>builder()
+    //             .sts("success")
+    //             .msg("Feedback submitted Successfully")
+    //             .bd(sts)
+    //             .build();
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(response);
+
+    // }
+
+    @PostMapping(value = "/{userId}/feedback", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<Integer>> createFeedback(@Valid @PathVariable Long userId, @RequestBody FeedbackDto dto) {
+        Integer sts = userService.createFeedback(userId,dto);
+        AppResponse<Integer> response = AppResponse.<Integer>builder()
+                .msg("feedback submitted.")
                 .bd(sts)
                 .build();
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
-
     }
+
+
     //will be used when user clicks show feedbacks
 
     @GetMapping(value = "/feedback", produces = MediaType.APPLICATION_JSON_VALUE)

@@ -1,11 +1,11 @@
 function setupTable() {
     const table = document.getElementById('table')
-    const btnSearch = document.getElementById('btnSearch')
+    // const btnSearch = document.getElementById('btnSearch')
     
-    btnSearch.onclick = () =>   {
+    // btnSearch.onclick = () =>   {
 
-        apiFetchBooking(table, document.getElementById('txtLocation').value )
-    }
+    //     apiFetchBooking(table, document.getElementById('txtLocation').value )
+    // }
 
 
 
@@ -16,9 +16,7 @@ setupTable()
 
 
 function propulateActualData(table, bookings) {
-    while (table.rows.length > 1) {
-        table.deleteRow(1)
-    }
+
     for(const booking of bookings) {
 
         const {id ,location, startDate, endDate, startingTime, endingTime, price } = booking
@@ -68,3 +66,16 @@ function apiFetchBooking(table, loc) {
         })
         .catch(err => console.log(err))
 }
+
+function logout() {
+    localStorage.setItem("userId", null)
+    window.location.href = "../../login/loginhtml/login-page.html"
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>All Feedbacks</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Bootstrap CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css">
+    <link rel ="stylesheet" href="../dashboardcss/homepage.css">
+</head>
+<body class="text-center">
+    <div class="header">
+        <h1>ONLINE BOOKING SYSTEM</h1>
+        <a href="../dashboardhtml/user-homepage.html" class="btn btn-dark ms-auto right" >Home</a>
+        <a  class="btn btn-dark  ms-auto left" onclick="goBack()">Go back</a>
+    </div>
+    <div class="line"></div>
+    <div>
+      <h2>
+        ALL USER FEEDBACKS
+      </h2>
+    </div>
+
+	<div class="container-md mt-4" >
+		<h2 class="text-center mb-4">All Feedbacks</h2>
+		<table class="table " style="color: white;" >
+			<thead>
+				<tr>
+					<th scope="col">Comment</th>
+					<th scope="col">Rating</th>
+				</tr>
+			</thead>
+			<tbody id="feedbacks">
+				<!-- feedbacks will be dynamically loaded here -->
+			</tbody>
+		</table>
+	</div>
+	
+	<script src="../dashboardjs/allfeedback.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

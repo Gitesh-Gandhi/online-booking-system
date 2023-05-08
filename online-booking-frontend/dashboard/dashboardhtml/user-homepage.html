@@ -21,9 +21,10 @@
     <div class="header">
       <h1>ONLINE BOOKING SYSTEM</h1>
       <a class="btn btn-dark  ms-auto right" onclick="logout()">Logout</a>
+  
     </div>
     <div class="line"></div>
-    <div class="container-fluid">
+    <div class="container-md">
       
       
       <!-- Dashboard with tabs -->
@@ -36,8 +37,12 @@
             <a class="nav-link" id="current-bookings-tab" data-bs-toggle="tab" href="../dashboardhtml/usercurrentbookings.html" role="tab" aria-controls="current-bookings" aria-selected="false">Your Current Bookings</a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" id="feedback-tab" data-bs-toggle="tab" href="../dashboardhtml/bookinghistory.html" role="tab" aria-controls="bookinghistory" aria-selected="false">View Booking History</a>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" id="feedback-tab" data-bs-toggle="tab" href="../dashboardhtml/feedback.html" role="tab" aria-controls="feedback" aria-selected="false">Feedback</a>
           </li>
+         
         </ul>
         <div class="tab-content">
           <div class="tab-pane fade" id="check-booking" role="tabpanel" aria-labelledby="check-booking-tab">
@@ -49,13 +54,14 @@
           <div class="tab-pane fade" id="feedback" role="tabpanel" aria-labelledby="feedback-tab">
             <p>Feedback tab content</p>
           </div>
+          
         </div>
       </div>
       <div class="row">
         <div class="col-12">
           <table class="table table-striped" id="table" style="color: white;">
             <div>
-              <h1>AVAILABLE BOOKINGS</h1>
+              <h2>AVAILABLE BOOKINGS</h2>
             </div>
             <thead>
               <tr>
@@ -73,7 +79,7 @@
 		</div>
 	  </div>
 	</div>
-  <script src="../dashboard.js/userhompage.js"></script>
+  <script src="../dashboardjs/userhompage.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <!-- DataTables library -->
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.3/b-2.0.1/b-colvis-2.0.1/b-html5-2.0.1/b-print-2.0.1/datatables.min.css"/>

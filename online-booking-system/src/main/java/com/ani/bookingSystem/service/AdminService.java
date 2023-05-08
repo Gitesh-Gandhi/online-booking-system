@@ -41,6 +41,6 @@ public interface AdminService {
 
      List<AdminUserBookDto> searchUserBookingsByUserName(String userName);
 
-     List<BookingSlot> currenytBokking(LocalDate date);
+    
     
 }
