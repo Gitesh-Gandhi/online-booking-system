@@ -1,13 +1,13 @@
 function setupTable() {
     const table = document.getElementById('userBookingTable')
 
-    const btnSearch = document.getElementById('btnSearch')
+    // const btnSearch = document.getElementById('btnSearch')
     
-    btnSearch.onclick = () =>   {
+    // btnSearch.onclick = () =>   {
 
-        const api=apiFetchBooking(table, document.getElementById('txtUsername').value )
-        console.log(api)
-    }
+    //     const api=apiFetchBooking(table, document.getElementById('txtUsername').value )
+    //     console.log(api)
+    // }
     
     apiFetchAllbookings(table)
 }

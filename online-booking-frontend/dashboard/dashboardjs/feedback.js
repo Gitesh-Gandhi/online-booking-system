@@ -1,11 +1,8 @@
 const validateForm = ({ comment, rating}) => {
 
-   
 
-    // if (comment.length <= 0) return { msg: 'invalid comment', sts: false}
-    // if (rating.length <= 0) return { msg: 'invalid rating', sts: false }
  
-    return { sts : 'success', msg :'all fields are valid' }
+    return { sts : true , msg :'all fields are valid' }
 }
 
 function setupForm() {
@@ -24,13 +21,15 @@ function setupForm() {
         const user = Object.fromEntries(formData.entries()) 
         console.log(user)
 
-        const { sts, msg } = validateForm(user)
+        apiFeedback(user, feedback)
 
-        if (sts) apiFeedback(user, feedback)
-        else {
-            err.style.display = 'block'
-            err.innerHTML = `<strong>${msg}</strong>`
-        }
+        // const { sts, msg } = validateForm(user)
+
+        // if (sts) apiFeedback(user, feedback)
+        // else {
+        //     err.style.display = 'block'
+        //     err.innerHTML = `<strong>${msg}</strong>`
+        // }
     }
 }
 

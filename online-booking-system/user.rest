@@ -41,7 +41,7 @@ content-type: application/json
 
 {
 
-    "comment": "helloo i can see this comment",
+    "comment": "helloo itis nme",
     "rating": 10.0
     
 

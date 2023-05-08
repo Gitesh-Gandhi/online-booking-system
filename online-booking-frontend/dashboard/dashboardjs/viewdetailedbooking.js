@@ -33,7 +33,7 @@ function setupForm() {
     console.log(formEvent)
     formEvent.onsubmit = ev => {
         ev.preventDefault()
-         showSuccessModal()
+        //  showSuccessModal()
     }
 }
 
@@ -58,16 +58,24 @@ function bookByUserId() {
     axios.post(`http://localhost:8080/user/${userId}/booking/${bookingId}`, { headers })
 
     .then(()=> {
-         form.reset()
+        //  form.reset()
         showSuccessModal()
 
-    }).catch(err => console.log(err))
+    }).catch(err =>{
+        showSuccessModal1()
+        console.log(err)
+    })
 }
 
 
 
 function showSuccessModal() {
     const myModalEl = document.getElementById('successModal');
+    const modal = new bootstrap.Modal(myModalEl)
+    modal.show()
+}
+function showSuccessModal1() {
+    const myModalEl = document.getElementById('successModal1');
     const modal = new bootstrap.Modal(myModalEl)
     modal.show()
 }

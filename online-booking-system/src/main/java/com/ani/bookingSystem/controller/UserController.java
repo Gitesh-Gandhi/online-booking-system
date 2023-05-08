@@ -170,6 +170,7 @@ public class UserController {
     public ResponseEntity<AppResponse<Integer>> createFeedback(@Valid @PathVariable Long userId, @RequestBody FeedbackDto dto) {
         Integer sts = userService.createFeedback(userId,dto);
         AppResponse<Integer> response = AppResponse.<Integer>builder()
+                .sts("success")
                 .msg("feedback submitted.")
                 .bd(sts)
                 .build();
