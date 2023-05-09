@@ -4,7 +4,7 @@ GET http://localhost:8080/admin/users
 
 ### Get All users
 
-GET http://localhost:8080/admin/filterbyusername?userName=rueben
+GET http://localhost:8080/admin/filterbyusername?userName=Gitesh51
 
 ### fetch user
 

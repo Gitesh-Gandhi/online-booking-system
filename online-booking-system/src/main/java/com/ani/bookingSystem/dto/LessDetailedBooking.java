@@ -50,3 +50,4 @@ public class LessDetailedBooking {
     @NotBlank(message = "Price cant be blank")
     private Double price; 
 }
+
