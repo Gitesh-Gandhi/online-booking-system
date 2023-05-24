@@ -33,12 +33,13 @@ function propulateActualData(table, userBookings) {
         row.insertCell(5).innerHTML = startingTime
         row.insertCell(6).innerHTML = endingTime
         row.insertCell(7).innerHTML = price
+        row.insertCell(8).innerHTML = `
+        <a class='ms-2' onclick='showSuccessModal()'>User reminder</a>
         
-            
-            
-            
-        
+    `       
     }
+
+    
 }
 
 
@@ -81,5 +82,8 @@ function goBack() {
     window.history.back();
 }
 
-
-
+function showSuccessModal() {
+    const myModalEl = document.getElementById('successModal');
+    const modal = new bootstrap.Modal(myModalEl)
+    modal.show()
+}

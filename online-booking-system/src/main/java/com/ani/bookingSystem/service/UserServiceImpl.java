@@ -23,7 +23,6 @@ import com.ani.bookingSystem.repository.FeedbackRepository;
 import com.ani.bookingSystem.repository.UsersRepository;
 import com.ani.bookingSystem.util.DynamicMapper;
 
-
 import org.springframework.beans.BeanUtils;
 
 import lombok.AllArgsConstructor;
@@ -48,7 +47,6 @@ public class UserServiceImpl implements UserService {
         return userDto;
     }
 
-
     @Override
     public Integer createNewUserBooking(Long userId, Long bookingId) {
 
@@ -56,23 +54,21 @@ public class UserServiceImpl implements UserService {
                 .orElseThrow(() -> new UserNotFoundException("No User found for " + userId + " ID"));
 
         // if (user.getRole().equals("admin"))
-        //     throw new InvalidRoleException("Admin can't book Event");
+        // throw new InvalidRoleException("Admin can't book Event");
         BookingSlot booking = adminRepository.findById(bookingId)
                 .orElseThrow(() -> new BookingSlotNotFoundException("Event not Found for " + bookingId + " id"));
-        
-                if(booking.getUsers().contains(user)) throw new UserNotFoundException("already booked");
+
+        if (booking.getUsers().contains(user))
+            throw new UserNotFoundException("already booked");
         booking.getUsers().add(user);
         adminRepository.save(booking);
         return 1;
     }
 
-    
-
     @Override
     public List<UserBookingDto> getAllBookings(Long userId) {
         Users user = usersRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("No User found for " + userId + " ID"));
-
 
         List<UserBookingDto> collect = user.getBookingSlots()
                 .stream()
@@ -91,7 +87,7 @@ public class UserServiceImpl implements UserService {
         LocalDate currentDate = LocalDate.now();
 
         List<UserBookingDto> currentBookings = user.getBookingSlots().stream()
-                .filter(booking -> booking.getEndDate().isAfter(currentDate))
+                .filter(booking -> !booking.getEndDate().isBefore(currentDate))
                 .map(booking -> dynamicMapper.convertor(booking, new UserBookingDto()))
                 .collect(Collectors.toList());
 
@@ -105,41 +101,40 @@ public class UserServiceImpl implements UserService {
     public List<UserBookingDto> getBookingHistory(Long userId) {
         Users user = usersRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("No User found for " + userId + " ID"));
-    
+
         LocalDate currentDate = LocalDate.now();
-    
+
         List<UserBookingDto> bookingHistory = user.getBookingSlots().stream()
                 .filter(booking -> booking.getEndDate().isBefore(currentDate))
                 .map(booking -> dynamicMapper.convertor(booking, new UserBookingDto()))
                 .collect(Collectors.toList());
-    
+
         if (bookingHistory.isEmpty()) {
             throw new BookingSlotNotFoundException("No booking history found");
         }
-    
+
         return bookingHistory;
     }
-    
-    
+
     public NewUserBookingDto getUserBookingById(Long userId, Long bookingId) {
         Users user = usersRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException("No user found with id " + userId));
-        
+
         BookingSlot bookingSlot = user.getBookingSlots().stream()
                 .filter(bs -> bs.getId().equals(bookingId))
                 .findFirst()
                 .orElseThrow(() -> new BookingSlotNotFoundException("No booking slot found with id " + bookingId));
-        
-                NewUserBookingDto bookingSlotDto = new NewUserBookingDto();
+
+        NewUserBookingDto bookingSlotDto = new NewUserBookingDto();
         BeanUtils.copyProperties(bookingSlot, bookingSlotDto);
-        
+
         return bookingSlotDto;
     }
 
     @Override
     public Integer deleteUserBooking(Long bookingId, Long userId) {
         BookingSlot bookingSlot = adminRepository.findById(bookingId)
-                .orElseThrow(() -> new BookingSlotNotFoundException("No user booking slot found" ));
+                .orElseThrow(() -> new BookingSlotNotFoundException("No user booking slot found"));
         Users user = bookingSlot.getUsers().stream().filter(u -> u.getId().equals(userId)).findFirst()
                 .orElseThrow(() -> new UserNotFoundException("No user booking slot found"));
 
@@ -160,29 +155,27 @@ public class UserServiceImpl implements UserService {
         return 1;
     }
 
-   
     public List<FeedbackDto> listAllFeedbacks() {
         List<Feedback> feedbackList = feedbackRepository.findAll();
         List<FeedbackDto> feedbackDtoList = new ArrayList<>();
-    
+
         for (Feedback feedback : feedbackList) {
             FeedbackDto feedbackDto = new FeedbackDto();
             BeanUtils.copyProperties(feedback, feedbackDto);
             feedbackDtoList.add(feedbackDto);
-            if(feedbackDtoList.isEmpty()){
+            if (feedbackDtoList.isEmpty()) {
                 throw new FeedbackNotFoundException("no feedback present ");
             }
         }
-    
+
         return feedbackDtoList;
     }
     // public Integer updateFeedback( FeedbackDto feedbackDto) {
-    //     Feedback feedback = feedbackRepository.findById(feedbackDto.getUserId())
-    //             .orElseThrow(() -> new FeedbackNotFoundException("No feedback found"));
-    //     BeanUtils.copyProperties(feedbackDto, feedback);
-    //     feedbackRepository.save(feedback);
-    //     return 1;
+    // Feedback feedback = feedbackRepository.findById(feedbackDto.getUserId())
+    // .orElseThrow(() -> new FeedbackNotFoundException("No feedback found"));
+    // BeanUtils.copyProperties(feedbackDto, feedback);
+    // feedbackRepository.save(feedback);
+    // return 1;
     // }
-    
 
 }

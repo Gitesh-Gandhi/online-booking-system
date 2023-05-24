@@ -16,4 +16,11 @@ public interface AdminRepository extends JpaRepository<BookingSlot, Long> {
     List <BookingSlot> findByUsers(Long id);
 
     List<BookingSlot> findByEndDateGreaterThan(LocalDate endDate);
+
+    List<BookingSlot> findBookingSlotByStartDate(LocalDate date);
+
+    List<BookingSlot> findBookingSlotByPrice(Double price);
+
+    List<BookingSlot> findBookingSlotByLocationAndStartDateAndPrice(String ss ,LocalDate date ,Double price);
+
 }

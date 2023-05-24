@@ -3,11 +3,20 @@ function setupTable() {
     const btnSearch = document.getElementById('btnSearch')
     
     btnSearch.onclick = () =>   {
+        const location=document.getElementById('txtLocation').value
+        const startdate=document.getElementById('txtStartdate').value
+        const price=document.getElementById('txtPrice').value
+        console.log(location)
+        console.log(startdate)
+        console.log(price)
+        
+        apiFetchBookingByLocation(table, location )
+        apiFetchBookingByStartDate(table, startdate )
+        apiFetchBookingByPrice(table, price )
+        apiFetchBookingByFilters(table, location , startdate, price )
 
-        apiFetchBooking(table, document.getElementById('txtLocation').value )
+        
     }
-
-
 
     apiFetchAllbookings(table)
 }
@@ -52,13 +61,48 @@ function apiFetchAllbookings(table) {
         .catch(err => console.log(err))
 }
 
-function apiFetchBooking(table, loc) {
-    const url = `http://localhost:8080/admin/filterLocation`
-    axios.get(url,{
-        params: {
-            location: loc
-        }
-    })
+function apiFetchBookingByLocation(table, location) {
+    console.log(location)
+    axios.get(`http://localhost:8080/admin/filterbyLocation/${location}`)
+        .then(res => {
+            const { data } = res
+            console.log(data)  
+            const { sts, msg, bd } = data
+           
+            propulateActualData(table, bd)
+        })
+        .catch(err => console.log(err))
+}
+
+function apiFetchBookingByStartDate(table, startDate) {
+    console.log(startDate)
+    axios.get(`http://localhost:8080/admin/filterStartdate/${startDate}`)
+        .then(res => {
+            const { data } = res
+            console.log(data)  
+            const { sts, msg, bd } = data
+           
+            propulateActualData(table, bd)
+        })
+        .catch(err => console.log(err))
+}
+
+function apiFetchBookingByPrice(table, price) {
+    console.log(location)
+    axios.get(`http://localhost:8080/admin/filterPrice/${price}`)
+        .then(res => {
+            const { data } = res
+            console.log(data)  
+            const { sts, msg, bd } = data
+           
+            propulateActualData(table, bd)
+        })
+        .catch(err => console.log(err))
+}
+
+function apiFetchBookingByFilters(table, location, startDate, price) {
+    console.log(location)
+    axios.get(`http://localhost:8080/admin/filterbyLSP/${location}/${startDate}/${price}`)
         .then(res => {
             const { data } = res
             console.log(data)  

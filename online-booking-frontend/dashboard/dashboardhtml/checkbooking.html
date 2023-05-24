@@ -34,11 +34,20 @@
             
             <div class="col-9 input-group">
                 <div class="form-floating">
-                    <input type="text" class="form-control" id="txtLocation" placeholder="Client" name="client">
-                    <label for="txtClient" style="color: black;">Location</label>
+                    <input type="text" class="form-control" id="txtLocation" placeholder="Location" name="location">
+                    <label for="txtLocation" style="color: black;">Location</label>  
                 </div>
+                <div class="form-floating">
+                  <input type="date" class="form-control" id="txtStartdate" placeholder="Start-Date" name="startdate">
+                  <label for="txtStartdate" style="color: black;">Start-date</label>
+              </div>
+              <div class="form-floating">
+                <input type="number" class="form-control" id="txtPrice" placeholder="Price" name="price">
+                <label for="txtPrice" style="color: black;">Price</label>
+            </div>
                 <button class="btn btn-dark" id="btnSearch" style="background-color: black;">Search</button>
             </div>
+           
         </div>
         <div class="row mt-3">
           <table class="table table-bordered" id="table" style="color: white; ">

@@ -1,6 +1,7 @@
 package com.ani.bookingSystem.service;
 
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,6 +15,7 @@ import com.ani.bookingSystem.domain.Users;
 import com.ani.bookingSystem.dto.AdminUserBookDto;
 import com.ani.bookingSystem.dto.BookingSlotDto;
 import com.ani.bookingSystem.dto.LessDetailedBooking;
+import com.ani.bookingSystem.dto.UserCreateDto;
 import com.ani.bookingSystem.dto.UsersDto;
 import com.ani.bookingSystem.exception.BookingSlotNotFoundException;
 import com.ani.bookingSystem.exception.UserNotFoundException;
@@ -75,7 +77,7 @@ public class AdminServiceImpl implements AdminService {
 
     // the admin can update the user account through this service
     @Override
-    public Integer updateUser(UsersDto dto) {
+    public Integer updateUser(UserCreateDto dto) {
         isUserPresent(dto.getId());
         usersRepository.save(dynamicMapper.convertor(dto, new Users()));
         return 1;
@@ -105,6 +107,45 @@ public class AdminServiceImpl implements AdminService {
     @Override
     public List<LessDetailedBooking> findBookingSlotsByLocation(String location) {
         List<LessDetailedBooking> allBookingSlots = adminRepository.findBookingSlotByLocation(location)
+                .stream()
+                .map(bookingSlot -> dynamicMapper.convertor(bookingSlot, new LessDetailedBooking()))
+                .collect(Collectors.toList());
+        if (allBookingSlots.isEmpty()) {
+            throw new BookingSlotNotFoundException("No Booking slots present create new one");
+        }
+        return allBookingSlots;
+
+    }
+
+    @Override
+    public List<LessDetailedBooking> findBookingSlotsByStartDate(LocalDate date) {
+        List<LessDetailedBooking> allBookingSlots = adminRepository.findBookingSlotByStartDate(date)
+                .stream()
+                .map(bookingSlot -> dynamicMapper.convertor(bookingSlot, new LessDetailedBooking()))
+                .collect(Collectors.toList());
+        if (allBookingSlots.isEmpty()) {
+            throw new BookingSlotNotFoundException("No Booking slots present create new one");
+        }
+        return allBookingSlots;
+
+    }
+
+    @Override
+    public List<LessDetailedBooking> findBookingSlotsByPrice(Double price) {
+        List<LessDetailedBooking> allBookingSlots = adminRepository.findBookingSlotByPrice(price)
+                .stream()
+                .map(bookingSlot -> dynamicMapper.convertor(bookingSlot, new LessDetailedBooking()))
+                .collect(Collectors.toList());
+        if (allBookingSlots.isEmpty()) {
+            throw new BookingSlotNotFoundException("No Booking slots present create new one");
+        }
+        return allBookingSlots;
+
+    }
+
+    @Override
+    public List<LessDetailedBooking> findBookingSlotsByLocationAndStartDateAndPrice(String location, LocalDate date, Double price) {
+        List<LessDetailedBooking> allBookingSlots = adminRepository.findBookingSlotByLocationAndStartDateAndPrice(location , date , price)
                 .stream()
                 .map(bookingSlot -> dynamicMapper.convertor(bookingSlot, new LessDetailedBooking()))
                 .collect(Collectors.toList());

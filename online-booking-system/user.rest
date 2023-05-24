@@ -1,27 +1,27 @@
 
 ### Get user 
 
-GET http://localhost:8080/user/56
+GET http://localhost:8080/user/57
 
 
 ### Create New user booking 
 
-POST http://localhost:8080/user/9/booking/29 HTTP/1.1 
+POST http://localhost:8080/user/40/booking/50 HTTP/1.1 
 content-type: application/json
 
 
 
 ### Get a user bookings 
 
-GET http://localhost:8080/user/getuserbookings/65
+GET http://localhost:8080/user/getuserbookings/40
 
 ### Get a user bookings for current bookings
 
-GET http://localhost:8080/user/getcurrentbookings/70
+GET http://localhost:8080/user/getcurrentbookings/33
 
 ### Get a user booking history
 
-GET http://localhost:8080/user/getbookinghistory/70
+GET http://localhost:8080/user/getbookinghistory/33
 
 
 
@@ -50,4 +50,3 @@ content-type: application/json
 ### Get All feedbacks
 
 GET http://localhost:8080/user/feedback
-

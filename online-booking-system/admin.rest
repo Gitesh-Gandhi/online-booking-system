@@ -4,7 +4,7 @@ GET http://localhost:8080/admin/users
 
 ### Get All users
 
-GET http://localhost:8080/admin/filterbyusername?userName=Gitesh51
+GET http://localhost:8080/admin/filterbyusername?userName=david1
 
 ### fetch user
 
@@ -51,9 +51,25 @@ content-type: application/json
 
 GET http://localhost:8080/admin/bookingslot
 
-### Get all Booking slots by location
+### Get all Booking slots by location using @request param
 
 GET http://localhost:8080/admin/filterLocation?location=kolkata
+
+### Get all Booking slots by location using @Pathvariable
+
+GET http://localhost:8080/admin/filterbyLocation/kolkata
+
+### Get all Booking slots by startdate
+
+GET http://localhost:8080/admin/filterStartdate/2023-05-07
+
+### Get all Booking slots by price
+
+GET http://localhost:8080/admin/filterPrice/8
+
+### Get all Booking slots by location,startdate and price
+
+GET http://localhost:8080/admin/filterbyLSP/kolkata/2023-05-07/1455
 
 
 ### Fetch booking slot
@@ -91,4 +107,3 @@ GET http://localhost:8080/admin/alluserbookings
 ### Get all userBooking for specific user by username
 
 GET http://localhost:8080/admin/filterbyname?username=rahul
-

@@ -23,6 +23,7 @@ import com.ani.bookingSystem.dto.AdminUserBookDto;
 import com.ani.bookingSystem.dto.AppResponse;
 import com.ani.bookingSystem.dto.BookingSlotDto;
 import com.ani.bookingSystem.dto.LessDetailedBooking;
+import com.ani.bookingSystem.dto.UserCreateDto;
 import com.ani.bookingSystem.dto.UsersDto;
 import com.ani.bookingSystem.service.AdminService;
 
@@ -91,7 +92,7 @@ public class AdminController {
     //when admin clicks update user 
 
     @PutMapping(value = "/user/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<AppResponse<Integer>> updateUser(@RequestBody UsersDto dto) {
+    public ResponseEntity<AppResponse<Integer>> updateUser(@RequestBody UserCreateDto dto) {
 
         final Integer sts = adminService.updateUser(dto);
 
@@ -133,6 +134,50 @@ public class AdminController {
     @GetMapping(value = "/filterLocation", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<AppResponse<List<LessDetailedBooking>>> findBookingSlotsByLocation(@RequestParam String location) {
         List<LessDetailedBooking> sts = adminService.findBookingSlotsByLocation(location);
+        AppResponse<List<LessDetailedBooking>> response = AppResponse.<List<LessDetailedBooking>>builder()
+                .sts("success")
+                .msg("All Booking slots")
+                .bd(sts)
+                .build();
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping(value = "/filterbyLocation/{location}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<LessDetailedBooking>>> findBookingByLocation(@PathVariable String location) {
+        List<LessDetailedBooking> sts = adminService.findBookingSlotsByLocation(location);
+        AppResponse<List<LessDetailedBooking>> response = AppResponse.<List<LessDetailedBooking>>builder()
+                .sts("success")
+                .msg("All Booking slots")
+                .bd(sts)
+                .build();
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping(value = "/filterStartdate/{date}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<LessDetailedBooking>>> findBookingSlotsByStartDate(@PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        List<LessDetailedBooking> sts = adminService.findBookingSlotsByStartDate(date);
+        AppResponse<List<LessDetailedBooking>> response = AppResponse.<List<LessDetailedBooking>>builder()
+                .sts("success")
+                .msg("All Booking slots")
+                .bd(sts)
+                .build();
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping(value = "/filterPrice/{price}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<LessDetailedBooking>>> findBookingSlotsByPrice(@PathVariable Double price) {
+        List<LessDetailedBooking> sts = adminService.findBookingSlotsByPrice(price);
+        AppResponse<List<LessDetailedBooking>> response = AppResponse.<List<LessDetailedBooking>>builder()
+                .sts("success")
+                .msg("All Booking slots")
+                .bd(sts)
+                .build();
+        return ResponseEntity.ok().body(response);
+    }
+
+    @GetMapping(value = "/filterbyLSP/{location}/{date}/{price}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<AppResponse<List<LessDetailedBooking>>> findBookingSlotsByLocationAndStartDateAndPrice(@PathVariable String location, @PathVariable("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date, @PathVariable Double price) {
+        List<LessDetailedBooking> sts = adminService.findBookingSlotsByLocationAndStartDateAndPrice(location, date, price);
         AppResponse<List<LessDetailedBooking>> response = AppResponse.<List<LessDetailedBooking>>builder()
                 .sts("success")
                 .msg("All Booking slots")

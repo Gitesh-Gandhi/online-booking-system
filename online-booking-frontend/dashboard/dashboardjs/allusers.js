@@ -29,7 +29,8 @@ function propulateActualData(table, users) {
         row.insertCell(2).innerHTML = email
         row.insertCell(3).innerHTML = currentLocation
         row.insertCell(4).innerHTML = `
-            <a class='ms-2' href='${updatePageUrl}'>Update</a>  
+            <a class='ms-2' href='${updatePageUrl}'>Update</a> 
+            <a class='ms-2' onclick='showSuccessModal()'>User reminder</a> 
             
         `
     }
@@ -79,4 +80,8 @@ function goBack() {
     window.history.back();
 }
 
-
+function showSuccessModal() {
+    const myModalEl = document.getElementById('successModal');
+    const modal = new bootstrap.Modal(myModalEl)
+    modal.show()
+}

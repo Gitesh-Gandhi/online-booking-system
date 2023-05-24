@@ -4,7 +4,7 @@ const validateForm = ({ userName, email, password, currentLocation, role }) => {
 
     if (userName.length <= 0) return { msg: 'invalid username', sts: false}
     if (email.length <= 0) return { msg: 'invalid email', sts: false }
-    if (password.length <= 0) return { msg: 'invalid password', sts: false}
+    if (password.length < 6) return { msg: 'invalid password', sts: false}
     if (currentLocation.length <= 0) return { msg: 'invalid location', sts: false }
     if((role.length <= 0) || !roles.includes(role)) return { msg: 'invalid role', sts: false }
 
